@@ -61,63 +61,39 @@ export default function Home() {
   }, []);
   // Display the weather information and image
   return (
-    <main className="text-black">
-      {/* CURRENT WEATHER CARD */}
-      <WeatherCard
-        location={weather.location}
-        description={weather.description}
-        temp={weather.temp}
-        temp_min={weather.temp_min}
-        temp_max={weather.temp_max}
-        icon={weather.icon}
-        wind_speed={weather.wind_speed}
-        daily={weather.daily} // MJ - addition - pass daily weather data to WeatherCard
-      />
-      
-      <WeatherSearch
-       location={weather.location}
-       description={weather.description}
-       temp={weather.temp}
-       temp_min = {weather.temp_min}
-       temp_max = {weather.temp_max}
-       icon = {weather.icon}
-       wind_speed = {weather.wind_speed}/>
-       {/* <p>Min Temperature: {weather.temp_min}</p>
-      <p>Max Temperature: {weather.temp_max}</p>
-      <p>Wind Speed: {weather.wind_speed} m/s</p>
-      {weather.icon && (
-        <img
-          src={`https://openweathermap.org/img/w/${weather.icon}.png`}
-          alt="Weather Icon"
+    <main className="text-black bg-red-200 flex justify-between gap-8 p-4">
+      {/* CURRENT WEATHER CARD */}      <div className="flex-1">
+        <WeatherCard
+        className ="sticky"
+          location={weather.location}
+          description={weather.description}
+          temp={weather.temp}
+          temp_min={weather.temp_min}
+          temp_max={weather.temp_max}
+          icon={weather.icon}
+          wind_speed={weather.wind_speed}
+          daily={weather.daily}
         />
-      )} */}
-     {/* MJ ADDITION */}
-     {weather.daily.map((day, index) => (
-      <div key={index} style={{ border: "1px solid #ccc", padding: "10px", margin: "10px" }}>
-        {/* <p>Day {index + 1}</p>
-        <p>Min Temperature: {day.temp.min}°C</p>
-        <p>Max Temperature: {day.temp.max}°C</p> */}
-        {/* more info to add */}
-        
-        {/* OTHER WEATHER CARDS */}
-        <WeatherCardSmall
-        location={weather.location}
-        weekDay={weekDay+index}
-        description={day.summary}
-        temp={day.temp.day}
-        temp_min={day.temp.min}
-        temp_max={day.temp.max}
-        icon={day.weather[0].icon}
-        wind_speed={day.wind_speed}
-         // MJ - addition - pass daily weather data to WeatherCard
-      />
       </div>
-    ))}
-    {/* MJ ADDITION */}
+
+      {/* MJ ADDITION */}
+      <div className="flex-shrink-0 bg-red-500">
+        {weather.daily.map((day, index) => (
+          <div key={index} className="mb-4">
+            <WeatherCardSmall
+              location={weather.location}
+              weekDay={weekDay + index}
+              description={day.summary}
+              temp={day.temp.day}
+              temp_min={day.temp.min}
+              temp_max={day.temp.max}
+              icon={day.weather[0].icon}
+              wind_speed={day.wind_speed}
+            />
+          </div>
+        ))}
+      </div>
     </main>
-
-
-
   );
 }
 
