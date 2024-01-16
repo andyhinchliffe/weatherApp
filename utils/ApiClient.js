@@ -25,7 +25,7 @@ responseStatusCheck(responseObject) {
   getWeather() {
     const weatherAPIKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
     
-    const weatherAPIURL = `https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=${weatherAPIKey}&units=metric`;
+    const weatherAPIURL = `https://api.openweathermap.org/data/3.0/onecall?lat=51.508&lon=-0.126&appid=${weatherAPIKey}&units=metric`;
 
     return this.getRequest(weatherAPIURL);
 }
