@@ -1,99 +1,72 @@
 "use client";
-
+// Import necessary libraries
 import { useState, useEffect } from "react";
 import { ApiClient } from "@/utils/ApiClient";
-import Day from "../components/Day"
+import WeatherCard from "@/components/WeatherCard";
 
-// <main>
-// // export default function Home() {
+// Your Home component
+export default function Home() {
+  const apiClient = new ApiClient();
 
-// //   const apiClient = new ApiClient();
+  // State to store weather data
+  const [weather, setWeather] = useState({
+    temp: "",
+    temp_min: "",
+    temp_max: "",
+    location: "",
+    description: "",
+    wind_speed: "",
+    icon: "", // Add icon state to store the image URL
+  });
 
-// //   const [range, setRange] = useState([0, 10])
+  // Function to fetch weather data
+  const getThisWeekWeather = async () => {
+    try {
+      const response = await apiClient.getWeather(); // Ensure that your getWeather function fetches data from the correct endpoint
+      setWeather({
+        location: response.data.timezone,
+        description: response.data.current.weather[0].description,
+        temp: response.data.current.temp,
+        temp_min: response.data.daily[0].temp.min,
+        temp_max: response.data.daily[0].temp.max,
+        wind_speed: response.data.current.wind_speed,
+        icon: response.data.current.weather[0].icon, 
+      });
+      console.log(response);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+    }
+  };
 
+  // useEffect to fetch weather data on component mount
+  useEffect(() => {
+    getThisWeekWeather();
+  }, []);
 
-// //   const [quote, setQuote] = useState({
-// //     content: "",
-// //     author: "",
-// //     tags: [],
-// //   });
+  // Display the weather information and image
+  return (
+    <main className="text-black">
+      <WeatherCard
+        location={weather.location}
+        description={weather.description}
+        temp={weather.temp}
+        temp_min = {weather.temp_min}
+        temp_max = {weather.temp_max}
+        icon = {weather.icon}
+        wind_speed = {weather.wind_speed}
+        // Add other props as needed
+      />
+       {/* <p>Min Temperature: {weather.temp_min}</p>
+      <p>Max Temperature: {weather.temp_max}</p>
+      <p>Wind Speed: {weather.wind_speed} m/s</p>
+      {weather.icon && (
+        <img
+          src={`https://openweathermap.org/img/w/${weather.icon}.png`}
+          alt="Weather Icon"
+        />
+      )} */}
+      
+    </main>
+  );
+}
 
-// //   const [authors, setAuthors] = useState([])
-
-// //   const getRandomQuote = async () => {
-// //     try {
-// //       const response = await apiClient.getQuote();
-// //       setQuote(response.data);
-// //       console.log(response)
-// //     } catch (error) {
-// //       console.log(error)
-// //     }
-// //   };
-
-// //   const getAndUpdateAuthors = async () => {
-// //     try {
-// //       const response = await apiClient.getAuthors(range[0], range[1]);
-// //       setAuthors(response.data.results)
-// //     } catch (error) {
-// //       console.log(error)
-// //     }
-// //   }
-
-// //   const getQuoteByAuthor = async (authorId) => {
-// //     try {
-// //       const response = await apiClient.getQuoteByAuthor(authorId);
-// //       if (response.data.results.length > 0) {
-// //         const randomQuote = response.data.results[Math.floor(Math.random() * response.data.results.length)]
-// //         setQuote(randomQuote)
-// //       } else {
-// //         setQuote({
-// //           content: "No quotes found for this author",
-// //           author: "",
-// //           tags: [],
-// //         })
-// //       }
-// //     } catch (error) {
-// //       console.log(error)
-// //     }
-// //   }
-
-// //   useEffect(() => {
-// //     getAndUpdateAuthors();
-// //   }, [range])
-
-// //   useEffect(() => {
-// //     getRandomQuote();
-// //   }, []);
-
-// //   const handlePreviousClick = () => {
-// //     if (range[0] - 10 >= 0) {
-// //       setRange([range[0] - 10, range[1] - 10]);
-// //     }
-// //   }
-  
-// //   const handleNextClick = () => {
-// //     if (range[1] + 10 <= 100) {
-// //       setRange([range[0] + 10, range[1] + 10]);
-// //     }
-// //   }
-  
-
-// //   return <main className="p-4">
-// //     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handlePreviousClick}>Previous</button>
-// //     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleNextClick}>Next</button>
-// //     <QuoteCard 
-// //       content={quote.content}
-// //       author={quote.author}
-// //       tags={quote.tags}
-// //     />
-// //     {
-// //       authors?.map((author) => {
-// //         return <Day 
-// //           day={day.name}
-// //           key={day._id}
-// //           handleQuoteUpdate={() => getQuoteByAuthor(day._id)}
-// //         />
-// //       })
-// //     }
-//   </main>;
-// }
