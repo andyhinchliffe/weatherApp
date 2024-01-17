@@ -9,7 +9,7 @@ const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wi
   };
 
   return (
-    <div className="card w-10/12 bg-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
+    <div className="card w-10/12 bg-gradient-to-b from-white to-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
       <div className="card-body flex flex-col items-center justify-center">
         <h2 className="card-title text-4xl text-center">{location}</h2>
         <h2 className="card-date font-bold text-center">{getFormattedDate(timezone2)}</h2>
