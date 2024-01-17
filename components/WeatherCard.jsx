@@ -1,6 +1,3 @@
-"use client";
-import React from 'react';
-
 const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wind_speed, daily, weekDay }) => {
   return (
     <div className="card w-10/12 bg-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
