@@ -22,35 +22,32 @@ export default function Home() {
     icon: "",
     daily: [], // MJ- addition Add a state for daily weather data
     timezone: "",
+    timezone2: "",
   });
 
-
-  let d = new Date();
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  let weekDay = days[d.getDay()];
-  console.log(weekDay);
 
   // Function to fetch weather data
   const getThisWeekWeather = async () => {
     try {
-      const response = await apiClient.getWeather(); // Ensure that your getWeather function fetches data from the correct endpoint
+      let response = await apiClient.getWeather(); // Ensure that your getWeather function fetches data from the correct endpoint
+
+console.log(response.data)
 
       // Modification added to setWeather
       setWeather((prevWeather) => ({
         ...prevWeather,
-        location: response.data.timezone,
-        description: response.data.current.weather[0].description,
-        temp: response.data.current.temp,
-        temp_min: response.data.daily[0].temp.min,
-        temp_max: response.data.daily[0].temp.max,
-        wind_speed: response.data.current.wind_speed,
-        icon: response.data.current.weather[0].icon,
-        daily: response.data.daily.slice(1, 6),
-        weekDay: response.data.weekDay,
-        timezone: response.data.daily.dt, // MJ-addition Save daily weather data for the next 7 days
+        location: response.data.body.timezone,
+        description: response.data.body.current.weather[0].description,
+        temp: response.data.body.current.temp,
+        temp_min: response.data.body.daily[0].temp.min,
+        temp_max: response.data.body.daily[0].temp.max,
+        wind_speed: response.data.body.current.wind_speed,
+        icon: response.data.body.current.weather[0].icon,
+        daily: response.data.body.daily.slice(1, 6),
+        timezone: response.data.body.daily.dt,
+        timezone2: response.data.body.current.dt,
+        
       }));
-
-      console.log(response);
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
@@ -71,14 +68,16 @@ export default function Home() {
         <div className="w-1/2 mt-10">
         <WeatherCard
         className ="sticky"
-          location={weather.location}
-          description={weather.description}
-          temp={weather.temp}
-          temp_min={weather.temp_min}
-          temp_max={weather.temp_max}
-          icon={weather.icon}
-          wind_speed={weather.wind_speed}
-          daily={weather.daily}
+          location={weather?.location}
+          description={weather?.description}
+          temp={weather?.temp}
+          temp_min={weather?.temp_min}
+          temp_max={weather?.temp_max}
+          icon={weather?.icon}
+          wind_speed={weather?.wind_speed}
+          daily={weather?.daily}
+          timezone2={weather?.timezone2}
+          
         />
       </div>
         {/* Col2 */}
@@ -90,16 +89,16 @@ export default function Home() {
           
           {weather.daily.map((day, index) => (
             <div key={index} className="">
-<WeatherCardSmall
-              location={weather.location}
-              weekDay={weekDay + index}
-              description={day.summary}
-              temp={day.temp.day}
-              temp_min={day.temp.min}
-              temp_max={day.temp.max}
-              icon={day.weather[0].icon}
-              wind_speed={day.wind_speed}
-              timezone = {day.dt}
+            <WeatherCardSmall
+              location={weather?.location}
+              
+              description2={day?.description2}
+              temp={day?.temp?.day}
+              temp_min={day?.temp.min}
+              temp_max={day?.temp.max}
+              icon={day?.weather[0]?.icon}
+              wind_speed={day?.wind_speed}
+              timezone = {day?.dt}
             />
           
           </div>
@@ -109,11 +108,7 @@ export default function Home() {
    </div>
           
           </div>
-
-      {/* MJ ADDITION */}
-      {/* Col 2 Right */}
-      
-        
+  
       </div>
     
     </main>
