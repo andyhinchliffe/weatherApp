@@ -1,42 +1,49 @@
-"use client";
-import React from 'react'
-const WeatherCard = ({icon,location,temp,description, temp_min, temp_max, wind_speed, daily, weekDay}) => {
+const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wind_speed, daily, weekDay }) => {
   return (
-    <div>
-        <div className="card w-1/2 bg-blue-100 shadow-xl mx-auto mt-10">
-  {/* <figure className="mx-auto w-64 shadow-xl"><img src={icon} alt="weatherImg" /></figure> */}
-  <div className="card-body">
-    <h2 className="card-title">Location: {location}</h2>
-  
-    <p className ="p-4"> Weather: {description}</p>
-    <p className ="p-4">Temperature: {temp}°C</p>
-    <p className ="p-4">Maximum Temperature: {temp_max}°C</p>
-    <p className ="p-4">Minimum Temperature: {temp_min}°C</p>
-    <p className ="p-4">Wind Speed: {wind_speed}</p>
+    <div className="card w-10/12 bg-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
+      <div className="card-body flex flex-col items-center justify-center">
+        <h2 className="card-title text-4xl text-center">{location}</h2>
+        <h2 className="card-date font-bold text-center">Date {weekDay}</h2>
+        <div className="flex items-center justify-center mb-4">
+          {icon && (
+            <img
+              src={`https://openweathermap.org/img/w/${icon}.png`}
+              alt="Weather Icon"
+              className="w-20 h-auto mr-2"
+            />
+          )}
+          <p className="font-bold text-2xl text-center ">{temp}°C</p>
+          
+        </div>
+        <div className="flex flex-col mb-10">
+          <div className="grid grid-cols-2 gap-12 gap-x-36">
+            <div>
+              <p className=" text-center font-bold">Weather Forecast:</p>
+              <p className="text-center text-2xl ">{description}</p>
+            </div>
+            <div>
+              <p className="text-center font-bold">Wind Speed:</p>
+              <p className="text-center text-2xl ">{wind_speed} m/s</p>
+            </div>
+            <div>
+              <p className="text-center font-bold">Max Temperature:</p>
+              <p className="text-center text-2xl text-xl">{temp_max}°C</p>
+            </div>
+            <div>
+              <p className="text-center font-bold">Min Temperature:</p>
+              <p className="text-center text-2xl">{temp_min}°C</p>
 
-    {icon && (
-  <img
-    src={`https://openweathermap.org/img/w/${icon}.png`}
-    alt="Weather Icon"
-    className="w-24 h-24 mx-auto"
-  />
-
-  
-
-
-)}
-
-
-
-
-
-
-  
-  </div>
-</div>
+            </div>
+          </div>
+        </div>
+        <div>
+        <p className="text-center text-sm">Created by Aaron, Andy and Magdalena </p>
+        <p className="text-center text-xs">Thanks to:  <a href="https://openweathermap.org/" className="mx-auto hover:text-blue-500 text-xs">https://openweathermap.org/</a></p>
+       
+        </div>
+      </div>
     </div>
+  );
+};
 
-    
-  )
-}
 export default WeatherCard;

@@ -57,6 +57,7 @@ export default function Home() {
 
   // Display the weather information and image
   return (
+
     <main className="text-black">
       {/* CURRENT WEATHER CARD */}
       <WeatherCard
