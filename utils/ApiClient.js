@@ -13,8 +13,9 @@ responseStatusCheck(responseObject) {
   getRequest(url) {
     return axios
       .get(url)
-      .then()
-
+      .then(
+        this.responseStatusCheck
+      )
       .catch(() => {
         console.error(err);
       });
@@ -23,11 +24,11 @@ responseStatusCheck(responseObject) {
   // this gets a weather details
 
   getWeather() {
-    const weatherAPIKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
+    // const weatherAPIKey = process.env.NEXT_PUBLIC_WEATHER_KEY;
     
-    const weatherAPIURL = `https://api.openweathermap.org/data/3.0/onecall?lat=51.508&lon=-0.126&appid=${weatherAPIKey}&units=metric`;
+    // const weatherAPIURL = `https://api.openweathermap.org/data/3.0/onecall?lat=51.508&lon=-0.126&appid=${weatherAPIKey}&units=metric`;
 
-    return this.getRequest(weatherAPIURL);
+    return this.getRequest("/api/weather");
 }
 }
- 
+//  "/api/weather

@@ -1,9 +1,18 @@
-const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wind_speed, daily, weekDay }) => {
+const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wind_speed, timezone2 }) => {
+
+  const getFormattedDate = (timestamp) => {
+    console.log("Timestamp from API:", timestamp); // Log the timestamp to the console
+  
+    const date = new Date(timestamp * 1000); // Convert the timestamp to milliseconds
+    const options = { weekday: "long", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  };
+
   return (
     <div className="card w-10/12 bg-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
       <div className="card-body flex flex-col items-center justify-center">
         <h2 className="card-title text-4xl text-center">{location}</h2>
-        <h2 className="card-date font-bold text-center">Date {weekDay}</h2>
+        <h2 className="card-date font-bold text-center">{getFormattedDate(timezone2)}</h2>
         <div className="flex items-center justify-center mb-4">
           {icon && (
             <img
