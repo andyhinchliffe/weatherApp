@@ -5,7 +5,7 @@ import { ApiClient } from "@/utils/ApiClient";
 import WeatherCard from "@/components/WeatherCard";
 import WeatherSearch from "@/components/WeatherSearch";
 import WeatherCardSmall from "@/components/WeatherCardSmall";
-import '../app/globals.css'
+import "../app/globals.css";
 
 // Your Home component
 export default function Home() {
@@ -26,13 +26,12 @@ export default function Home() {
     timezone2: "",
   });
 
-
   // Function to fetch weather data
   const getThisWeekWeather = async () => {
     try {
       let response = await apiClient.getWeather(); // Ensure that your getWeather function fetches data from the correct endpoint
 
-console.log(response.data)
+      console.log(response.data);
 
       // Modification added to setWeather
       setWeather((prevWeather) => ({
@@ -47,7 +46,6 @@ console.log(response.data)
         daily: response.data.body.daily.slice(1, 6),
         timezone: response.data.body.daily.dt,
         timezone2: response.data.body.current.dt,
-        
       }));
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -61,61 +59,49 @@ console.log(response.data)
   // Display the weather information and image
   return (
     <main>
-       <h1 className=" p-4 bg-clip-text font-bold bg-cover bg-no-repeat text-8xl text-transparent text-center" style={{ backgroundImage: "url('https://64.media.tumblr.com/f9550bbdc547c3e9710faa8f344e06a6/tumblr_p3jcwibaUs1wnoat1o1_640.gif')" }}>
-  The Weather App</h1>
-    <div className="text-black flex justify-between gap-8 p-4">
-      {/* CURRENT WEATHER CARD */}     
-  <div className="flex-1">
-      <div className="flex">
-     
+      <h1
+        className="p-4 bg-clip-text font-bold bg-cover bg-no-repeat text-8xl text-transparent text-center"
+        style={{
+          backgroundImage:
+            "url('https://64.media.tumblr.com/f9550bbdc547c3e9710faa8f344e06a6/tumblr_p3jcwibaUs1wnoat1o1_640.gif')",
+        }}
+      >
+        The Weather App
+      </h1>
+      <div className="text-black flex flex-wrap gap-8 p-4">
+        {/* CURRENT WEATHER CARD */}
+        <div className="flex-1 w-full md:w-1/2">
+          <WeatherCard
+            location={weather?.location}
+            description={weather?.description}
+            temp={weather?.temp}
+            temp_min={weather?.temp_min}
+            temp_max={weather?.temp_max}
+            icon={weather?.icon}
+            wind_speed={weather?.wind_speed}
+            daily={weather?.daily}
+            timezone2={weather?.timezone2}
+          />
+        </div>
 
-        {/* Col1 Left */}
-        <div className=" ml-64 w-1/2 mt-12">
-        <WeatherCard
-        className ="sticky"
-          location={weather?.location}
-          description={weather?.description}
-          temp={weather?.temp}
-          temp_min={weather?.temp_min}
-          temp_max={weather?.temp_max}
-          icon={weather?.icon}
-          wind_speed={weather?.wind_speed}
-          daily={weather?.daily}
-          timezone2={weather?.timezone2}
-          
-        />
-      </div>
-        {/* Col2 */}
-        
-       
-          <div class="w-1/2 mt-20">
-          <div className="flex-1">
-          
-          
+        {/* DAILY WEATHER CARDS */}
+        <div className="flex-1 w-full md:w-1/2 mt-4 md:mt-0">
           {weather.daily.map((day, index) => (
-            <div key={index} className="">
-            <WeatherCardSmall
-              location={weather?.location}
-              
-              description2={day?.description2}
-              temp={day?.temp?.day}
-              temp_min={day?.temp.min}
-              temp_max={day?.temp.max}
-              icon={day?.weather[0]?.icon}
-              wind_speed={day?.wind_speed}
-              timezone = {day?.dt}
-            />
-          
-          </div>
-          
-        ))}
-   </div>
-   </div>
-          
-          </div>
-  
+            <div key={index} className="mb-4">
+              <WeatherCardSmall
+                location={weather?.location}
+                description2={day?.description2}
+                temp={day?.temp?.day}
+                temp_min={day?.temp.min}
+                temp_max={day?.temp.max}
+                icon={day?.weather[0]?.icon}
+                wind_speed={day?.wind_speed}
+                timezone={day?.dt}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </main>
   );
 }
