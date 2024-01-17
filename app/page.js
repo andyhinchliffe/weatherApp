@@ -92,7 +92,7 @@ console.log(response.data)
             <WeatherCardSmall
               location={weather?.location}
               
-              description2={day?.description2}
+              description={day?.weather[0]?.description}
               temp={day?.temp?.day}
               temp_min={day?.temp.min}
               temp_max={day?.temp.max}
