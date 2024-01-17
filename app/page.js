@@ -87,20 +87,28 @@ export default function Home() {
         {/* DAILY WEATHER CARDS */}
         <div className="flex-1 w-full md:w-1/2 mt-4 md:mt-0">
           {weather.daily.map((day, index) => (
-            <div key={index} className="mb-4">
-              <WeatherCardSmall
-                location={weather?.location}
-                description2={day?.description2}
-                temp={day?.temp?.day}
-                temp_min={day?.temp.min}
-                temp_max={day?.temp.max}
-                icon={day?.weather[0]?.icon}
-                wind_speed={day?.wind_speed}
-                timezone={day?.dt}
-              />
-            </div>
-          ))}
-        </div>
+
+            <div key={index} className="">
+            <WeatherCardSmall
+              location={weather?.location}
+              
+              description={day?.weather[0]?.description}
+              temp={day?.temp?.day}
+              temp_min={day?.temp.min}
+              temp_max={day?.temp.max}
+              icon={day?.weather[0]?.icon}
+              wind_speed={day?.wind_speed}
+              timezone = {day?.dt}
+            />
+          
+          </div>
+          
+        ))}
+   </div>
+   </div>
+          
+          </div>
+  
       </div>
     </main>
   );
