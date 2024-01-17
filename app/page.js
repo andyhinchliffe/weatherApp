@@ -5,6 +5,7 @@ import { ApiClient } from "@/utils/ApiClient";
 import WeatherCard from "@/components/WeatherCard";
 import WeatherSearch from "@/components/WeatherSearch";
 import WeatherCardSmall from "@/components/WeatherCardSmall";
+import '../app/globals.css'
 
 // Your Home component
 export default function Home() {
@@ -62,13 +63,17 @@ export default function Home() {
   }, []);
   // Display the weather information and image
   return (
-    <main className="text-black flex justify-between gap-8 p-4">
+    <main>
+       <h1 className=" p-4 bg-clip-text font-bold bg-cover bg-no-repeat text-8xl text-transparent text-center" style={{ backgroundImage: "url('https://64.media.tumblr.com/f9550bbdc547c3e9710faa8f344e06a6/tumblr_p3jcwibaUs1wnoat1o1_640.gif')" }}>
+  The Weather App</h1>
+    <div className="text-black flex justify-between gap-8 p-4">
       {/* CURRENT WEATHER CARD */}     
   <div className="flex-1">
       <div className="flex">
+     
 
         {/* Col1 Left */}
-        <div className="w-1/2 mt-10">
+        <div className=" ml-64 w-1/2 mt-12">
         <WeatherCard
         className ="sticky"
           location={weather.location}
@@ -84,7 +89,7 @@ export default function Home() {
         {/* Col2 */}
         
        
-          <div class="w-1/2 mt-24">
+          <div class="w-1/2 mt-20">
           <div className="flex-1">
           
           
@@ -115,8 +120,7 @@ export default function Home() {
       
         
       </div>
-    
+    </div>
     </main>
   );
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Info } from 'lucide-react';
+import { Info, ChevronUpCircle  } from 'lucide-react';
 
 const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_speed, timezone }) => {
 
@@ -21,13 +21,14 @@ const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_sp
   };
   
     return (
+     
       <div>
       
-        <div className="card w-1/2 columns-4 bg-blue-100 shadow-xl mt-3">
-          <div className="mt-3 col-span-1 gap-0">
+        <div className="card w-3/4 columns-4 pb-3 bg-gradient-to-b from-white to-blue-100 shadow-xl mt-3">
+          <div className="mt-3 ml-4 col-span-1 gap-0">
           <div className="flex">
 
-    <div className="mx-auto my-auto"><h2 className="card-date">{getFormattedDate(timezone)} </h2></div>
+    <div className="mx-auto my-auto"><h2 className="card-date whitespace-nowrap w-40">{getFormattedDate(timezone)} </h2></div>
     <div className="mx-auto my-auto">{icon && (
               <img
                 src={`https://openweathermap.org/img/w/${icon}.png`}
@@ -36,12 +37,12 @@ const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_sp
               />
               
             )}</div>
-    <div className="mx-auto my-auto"><p className="text-bold"> {temp}°C</p></div>
-    <div className="mx-auto my-auto"><button
-              className={`btn ${showDetails ? 'bg-orange-500 text-white' : 'bg-green-500 text-white'}`}
+    <div className="mx-auto my-auto"><p className="font-bold"> {temp}°C</p></div>
+    <div className="mx-auto my-auto p-2"><button
+              className={`btn ${showDetails ? 'box-shadow-md inset-shadow-md bg-orange-500 text-white hover:bg-orange-700' : ' box-shadow-md inset-shadow-md bg-green-500 hover:bg-green-700 text-white'}`}
               onClick={handleToggleDetails}
             >
-              {showDetails ? 'Hide Details' : <Info />}
+              {showDetails ? <ChevronUpCircle/> : <Info />}
             </button></div>
 
     </div>
@@ -50,22 +51,37 @@ const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_sp
             
   
             {/* Additional details, conditionally rendered based on showDetails state */}
+            <div className="gap-0">
+
+
             {showDetails && (
-              <div>
-                <p className="p-4">Weather: {description}</p>
-                <p className="p-4">Maximum Temperature: {temp_max}°C</p>
-                <p className="p-4">Minimum Temperature: {temp_min}°C</p>
-                <p className="p-4">Wind Speed: {wind_speed}</p>
-              </div>
-            )}
-  
-            
+  <div>
+    <p className="p-4 text-center font-bold leading-tight">Weather:</p>
+    <p className="p-4 text-center leading-tight">{description}</p>
+    <div className="grid grid-cols-3 gap-4 ">
+      <div>
+        <p className="p-4 text-center font-bold leading-tight">Max Temp:</p>
+        <p className="p-4 text-center leading-tight">{temp_max}°C</p>
+      </div>
+      <div>
+        <p className="p-4 text-center font-bold leading-tight">Min Temp:</p>
+        <p className="p-4 text-center leading-tight">{temp_min}°C</p>
+      </div>
+      <div>
+        <p className="p-4 text-center font-bold leading-tight">Wind Speed:</p>
+        <p className="p-4 text-center leading-tight">{wind_speed}m/s</p>
+      </div>
+    </div>
+  </div>
+)}
+</div>
   
             {/* Show/Hide more information button always at the bottom */}
             
           </div>
         </div>
       </div>
+     
     );
   };
   
