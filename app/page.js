@@ -68,7 +68,7 @@ export default function Home() {
       >
         The <br/> Weather <br/>App
       </h1>
-      <div className="text-black flex flex-wrap gap-8 p-4">
+      <div className="text-black flex flex-wrap p-4">
         {/* CURRENT WEATHER CARD */}
         <div className="flex-1 w-full md:w-1/2">
           <WeatherCard
@@ -85,10 +85,10 @@ export default function Home() {
         </div>
 
         {/* DAILY WEATHER CARDS */}
-        <div className="flex-1 w-full md:w-1/2 mt-4 md:mt-0">
+        <div className="flex-1 w-full  md:w-1/2 mt-3 md:mt-0">
           {weather.daily.map((day, index) => (
 
-            <div key={index} className="">
+           <div key={index} className="mb-5">
             <WeatherCardSmall
               location={weather?.location}
               

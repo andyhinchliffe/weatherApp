@@ -24,16 +24,16 @@ const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_sp
      
       <div>
       
-        <div className="card w-3/4 columns-4 pb-3 bg-gradient-to-b from-white to-blue-100 shadow-xl mt-3">
+        <div  className="card  lg:w-3/4 columns-4  mx-auto pb-3  bg-gradient-to-b from-cyan-50 to-blue-100 shadow-lg mt-3">
           <div className="mt-3 ml-4 col-span-1 gap-0">
           <div className="flex">
 
-    <div className="mx-auto my-auto"><h2 className="card-date whitespace-nowrap w-40">{getFormattedDate(timezone)} </h2></div>
+    <div className="mx-auto my-auto"><h2 className="card-date whitespace-nowrap text-sm md:text-base w-30 md:w-40">{getFormattedDate(timezone)} </h2></div>
     <div className="mx-auto my-auto">{icon && (
               <img
                 src={`https://openweathermap.org/img/w/${icon}.png`}
                 alt="Weather Icon"
-                className="w-16 h-16 mx-auto"
+                className="w-16 h-16 mx-auto "
               />
               
             )}</div>
@@ -56,20 +56,20 @@ const WeatherCardSmall = ({ icon, temp, description, temp_min, temp_max, wind_sp
 
             {showDetails && (
   <div>
-    <p className="p-4 text-center font-bold leading-tight">Weather:</p>
-    <p className="p-4 text-center leading-tight">{description}</p>
-    <div className="grid grid-cols-3 gap-4 ">
+    <p className="whitespace-normal p-4 text-center font-bold leading-tight">Weather:</p>
+    <p className="whitespace-normal p-4 text-center leading-tight">{description}</p>
+    <div className="whitespace-normal grid grid-cols-3 gap-4 ">
       <div>
-        <p className="p-4 text-center font-bold leading-tight">Max Temp:</p>
-        <p className="p-4 text-center leading-tight">{temp_max}°C</p>
+        <p className="whitespace-normal p-4 text-center font-bold leading-tight">Max Temp:</p>
+        <p className="whitespace-normal p-4 text-center leading-tight">{temp_max}°C</p>
       </div>
       <div>
-        <p className="p-4 text-center font-bold leading-tight">Min Temp:</p>
+        <p className="whitespace-normal p-4 text-center font-bold leading-tight">Min Temp:</p>
         <p className="p-4 text-center leading-tight">{temp_min}°C</p>
       </div>
       <div>
-        <p className="p-4 text-center font-bold leading-tight">Wind Speed:</p>
-        <p className="p-4 text-center leading-tight">{wind_speed}m/s</p>
+        <p className="whitespace-normal p-4 text-center font-bold leading-tight">Wind Speed:</p>
+        <p className="whitespace-normal p-4 text-center leading-tight">{wind_speed}m/s</p>
       </div>
     </div>
   </div>

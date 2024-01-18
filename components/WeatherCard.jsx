@@ -9,9 +9,9 @@ const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wi
   };
 
   return (
-    <div className="card flex w-10/12 bg-gradient-to-b from-white to-blue-100 shadow-xl mx-auto mt-10 gap-y-20">
+    <div className="card  w-10/12 bg-gradient-to-b from-cyan-50 to-blue-100  shadow-xl mx-auto mt-3 gap-y-20">
       <div className="card-body flex flex-col items-center justify-center">
-        <h2 className="card-title text-4xl text-center">{location}</h2>
+        <h2 className="card-title text-2xl md:text-4xl text-center">{location}</h2>
         <h2 className="card-date font-bold text-center">{getFormattedDate(timezone2)}</h2>
         <div className="flex items-center justify-center mb-4">
           {icon && (
@@ -25,28 +25,30 @@ const WeatherCard = ({ icon, location, temp, description, temp_min, temp_max, wi
           
         </div>
         <div className="flex flex-col mb-10">
-          <div className="grid grid-cols-2 gap-12 gap-x-36">
+          <div className="grid grid-cols-2 gap-12 md:gap-x-36">
             <div>
-              <p className=" text-center font-bold">Weather Forecast:</p>
-              <p className="text-center text-2xl ">{description}</p>
+              <p className="whitespace-normal text-md text-center font-bold text-sm md:text-base">Weather Forecast:</p>
+              <p className="whitespace-normal text-center md:text-2xl ">{description}</p>
             </div>
             <div>
-              <p className="text-center font-bold">Wind Speed:</p>
-              <p className="text-center text-2xl ">{wind_speed} m/s</p>
+              <p className="whitespace-normal text-center font-bold text-sm md:text-base">Wind Speed:</p>
+              <p className="whitespace-normal text-center md:text-2xl ">{wind_speed} m/s</p>
             </div>
             <div>
-              <p className="text-center font-bold">Max Temperature:</p>
-              <p className="text-center text-2xl ">{temp_max}°C</p>
+              <p className="	text-wrap: wrap whitespace-normal text-center font-bold text-sm md:text-base">Max Temperature:</p>
+              <p className="whitespace-normal text-center md:text-2xl ">{temp_max}°C</p>
             </div>
             <div>
-              <p className="text-center font-bold">Min Temperature:</p>
-              <p className="text-center text-2xl">{temp_min}°C</p>
+              <p className="whitespace-normal text-center font-bold text-sm md:text-base">Min Temperature:</p>
+              <p className="whitespace-normal text-center md:text-2xl">{temp_min}°C</p>
 
             </div>
           </div>
         </div>
         <div>
-        <p className="text-center text-sm">Created by Aaron, Andy and Magdalena </p>
+        <p className="	text-wrap: wrap text-center text-xs md:text-sm">Created by Aaron, Andy and Magdalena </p>
+        <p className="	text-wrap: wrap text-center text-xs md:text-sm">Dedicated to Erin </p>
+
         <p className="text-center text-xs">Thanks to:  <a href="https://openweathermap.org/" className="mx-auto hover:text-blue-500 text-xs">https://openweathermap.org/</a></p>
        
         </div>
