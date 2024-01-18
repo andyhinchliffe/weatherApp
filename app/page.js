@@ -60,13 +60,13 @@ export default function Home() {
   return (
     <main>
       <h1
-        className="p-4 bg-clip-text font-bold bg-cover bg-no-repeat text-8xl text-transparent text-center"
+        className="p-4 bg-clip-text font-bold bg-cover bg-no-repeat text-4xl md:text-7xl text-transparent text-center"
         style={{
           backgroundImage:
             "url('https://64.media.tumblr.com/f9550bbdc547c3e9710faa8f344e06a6/tumblr_p3jcwibaUs1wnoat1o1_640.gif')",
         }}
       >
-        The Weather App
+        The <br/> Weather <br/>App
       </h1>
       <div className="text-black flex flex-wrap gap-8 p-4">
         {/* CURRENT WEATHER CARD */}
@@ -106,10 +106,6 @@ export default function Home() {
         ))}
    </div>
    </div>
-          
-          </div>
-  
-      </div>
     </main>
   );
 }
